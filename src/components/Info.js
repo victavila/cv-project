@@ -19,11 +19,11 @@ class Info extends Component {
                 </label>
                 <label>
                     Phone number
-                    <input type="tel"></input>
+                    <input type="tel" ></input>
                 </label>
             </div>
         )
     }
 }
 
-export default Info
+export default Info;

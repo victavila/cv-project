@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Info from "./Info";
+import Education from "./Education";
 
 class Main extends Component {
 
@@ -7,10 +8,11 @@ class Main extends Component {
         return (
             <main>
                 <Info />
+                <Education />
             </main>
             
         )
     }
 }
 
-export default Main
+export default Main;
