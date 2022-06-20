@@ -10,6 +10,12 @@ class Main extends Component {
         super();
 
         this.state = {
+            info: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+            },
             skill: {
                 text: '',
                 id: uniqid(),
@@ -18,12 +24,61 @@ class Main extends Component {
         }
     }
 
+    //Info methods
+
+    handleFirstNameChange = (e) => {
+        this.setState({
+            info: {
+                firstName: e.target.value,
+                lastName: this.state.info.lastName,
+                email: this.state.info.email,
+                phone: this.state.info.phone,
+            }
+        })
+    }
+
+    handleLastNameChange = (e) => {
+        this.setState({
+            info: {
+                firstName: this.state.info.firstName,
+                lastName: e.target.value,
+                email: this.state.info.email,
+                phone: this.state.info.phone,
+            }
+        })
+    }
+
+    handleEmailChange = (e) => {
+        this.setState({
+            info: {
+                firstName: this.state.info.firstName,
+                lastName: this.state.info.lastName,
+                email: e.target.value,
+                phone: this.state.info.phone,
+            }
+        })
+    }
+
+    handlePhoneChange = (e) => {
+        this.setState({
+            info: {
+                firstName: this.state.info.firstName,
+                lastName: this.state.info.lastName,
+                email: this.state.info.email,
+                phone: e.target.value,
+            }
+        })
+    }
+
+    // Skill methods
+
     handleSkillAdd = () => {
+        console.table(this.state.info)
         this.setState({
             skills: this.state.skills.concat(this.state.skill),
             skill: {
-              text: '',
-              id: uniqid(),
+                text: '',
+                id: uniqid(),
             },
           });
     }
@@ -31,8 +86,8 @@ class Main extends Component {
     handleSkillChange = (e) => {
         this.setState({
             skill: {
-              text: e.target.value,
-              id: this.state.skill.id,
+                text: e.target.value,
+                id: this.state.skill.id,
             },
           });
     }
@@ -44,7 +99,7 @@ class Main extends Component {
     render() {
         return (
             <main>
-                <Info />
+                <Info {...this.state.info} handleFirstNameChange={this.handleFirstNameChange} handleLastNameChange={this.handleLastNameChange} handleEmailChange={this.handleEmailChange} handlePhoneChange={this.handlePhoneChange}/>
                 <Education />
                 <Experience />
                 <Skills skills={this.state.skills} text={this.state.skill.text} handleChange={this.handleSkillChange} addButtonClicked={this.handleSkillAdd} deleteButtonClicked={this.handleSkillDelete}/>
