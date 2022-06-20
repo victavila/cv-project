@@ -16,6 +16,17 @@ class Main extends Component {
                 email: '',
                 phone: '',
             },
+            education: {
+                name: '',
+                location: '',
+                degree: '',
+                major: '',
+                startDate: '',
+                endDate: '',
+                GPA: '',
+                id: uniqid(),
+            },
+            educationArray: [],
             skill: {
                 text: '',
                 id: uniqid(),
@@ -24,7 +35,7 @@ class Main extends Component {
         }
     }
 
-    //Info methods
+    // Info methods
 
     handleFirstNameChange = (e) => {
         this.setState({
@@ -70,24 +81,150 @@ class Main extends Component {
         })
     }
 
-    // Skill methods
+    // Education methods
 
-    handleSkillAdd = () => {
-        console.table(this.state.info)
+    handleEducationNameChange = (e) => {
         this.setState({
-            skills: this.state.skills.concat(this.state.skill),
-            skill: {
-                text: '',
+            education: {
+                name: e.target.value,
+                location: this.state.education.location,
+                degree: this.state.education.degree,
+                major: this.state.education.major,
+                startDate: this.state.education.startDate,
+                endDate: this.state.education.endDate,
+                GPA: this.state.education.GPA,
+                id: this.state.education.id,
+            },
+        });
+    }
+
+    handleEducationLocationChange = (e) => {
+        this.setState({
+            education: {
+                name: this.state.education.name,
+                location: e.target.value,
+                degree: this.state.education.degree,
+                major: this.state.education.major,
+                startDate: this.state.education.startDate,
+                endDate: this.state.education.endDate,
+                GPA: this.state.education.GPA,
+                id: this.state.education.id,
+            },
+        });
+    }
+
+    handleEducationDegreeChange = (e) => {
+        this.setState({
+            education: {
+                name: this.state.education.name,
+                location: this.state.education.location,
+                degree: e.target.value,
+                major: this.state.education.major,
+                startDate: this.state.education.startDate,
+                endDate: this.state.education.endDate,
+                GPA: this.state.education.GPA,
+                id: this.state.education.id,
+            },
+        });
+    }
+
+    handleEducationMajorChange = (e) => {
+        this.setState({
+            education: {
+                name: this.state.education.name,
+                location: this.state.education.location,
+                degree: this.state.education.degree,
+                major: e.target.value,
+                startDate: this.state.education.startDate,
+                endDate: this.state.education.endDate,
+                GPA: this.state.education.GPA,
+                id: this.state.education.id,
+            },
+        });
+    }
+
+    handleEducationStartChange = (e) => {
+        this.setState({
+            education: {
+                name: this.state.education.name,
+                location: this.state.education.location,
+                degree: this.state.education.degree,
+                major: this.state.education.major,
+                startDate: e.target.value,
+                endDate: this.state.education.endDate,
+                GPA: this.state.education.GPA,
+                id: this.state.education.id,
+            },
+        });
+}
+
+    handleEducationEndChange = (e) => {
+        this.setState({
+            education: {
+                name: this.state.education.name,
+                location: this.state.education.location,
+                degree: this.state.education.degree,
+                major: this.state.education.major,
+                startDate: this.state.education.startDate,
+                endDate: e.target.value,
+                GPA: this.state.education.GPA,
+                id: this.state.education.id,
+            },
+        });
+    }
+
+    handleEducationGPAChange = (e) => {
+        this.setState({
+            education: {
+                name: this.state.education.name,
+                location: this.state.education.location,
+                degree: this.state.education.degree,
+                major: this.state.education.major,
+                startDate: this.state.education.startDate,
+                endDate: this.state.education.endDate,
+                GPA: e.target.value,
+                id: this.state.education.id,
+            },
+        });
+    }
+
+    handleEducationAdd = () => {
+        this.setState({
+            educationArray: this.state.educationArray.concat(this.state.education),
+            education: {
+                name: '',
+                location: '',
+                degree: '',
+                major: '',
+                startDate: '',
+                endDate: '',
+                GPA: '',
                 id: uniqid(),
             },
-          });
+        });
     }
+
+    handleEducationDelete = (e) => {
+        this.setState({educationArray: this.state.educationArray.filter((_, index) => index !== +e.target.dataset.id)})
+    }
+
+    // Skill methods
 
     handleSkillChange = (e) => {
         this.setState({
             skill: {
                 text: e.target.value,
                 id: this.state.skill.id,
+            },
+          });
+    }
+
+    handleSkillAdd = () => {
+        this.setState({
+            skills: this.state.skills.concat(this.state.skill),
+            skill: {
+                text: '',
+                id: uniqid(),
             },
           });
     }
@@ -100,7 +237,7 @@ class Main extends Component {
         return (
             <main>
                 <Info {...this.state.info} handleFirstNameChange={this.handleFirstNameChange} handleLastNameChange={this.handleLastNameChange} handleEmailChange={this.handleEmailChange} handlePhoneChange={this.handlePhoneChange}/>
-                <Education />
+                <Education {...this.state.education} educationArray={this.state.educationArray} handleNameChange={this.handleEducationNameChange} handleLocationChange={this.handleEducationLocationChange} handleDegreeChange={this.handleEducationDegreeChange} handleMajorChange={this.handleEducationMajorChange} handleStartChange={this.handleEducationStartChange} handleEndChange={this.handleEducationEndChange} handleGPAChange={this.handleEducationGPAChange} deleteButtonClicked={this.handleEducationDelete} addButtonClicked={this.handleEducationAdd}/>
                 <Experience />
                 <Skills skills={this.state.skills} text={this.state.skill.text} handleChange={this.handleSkillChange} addButtonClicked={this.handleSkillAdd} deleteButtonClicked={this.handleSkillDelete}/>
             </main>
