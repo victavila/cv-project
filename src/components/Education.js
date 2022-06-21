@@ -17,6 +17,7 @@ class Education  extends Component {
                 id: uniqid(),
             },
             educationArray: [],
+            edit: false
         }
     }
 
@@ -145,19 +146,47 @@ class Education  extends Component {
         this.setState({educationArray: this.state.educationArray.filter((_, index) => index !== +e.target.dataset.id)})
     }
 
+    handleEditClicked = () => {
+        this.setState({
+            edit: !this.state.edit,
+        })
+    }
+
+    handleEditChange = (key) => (e) => {
+        let newArray = [...this.state.educationArray];
+        let newEducation = {...newArray[+e.target.dataset.id]};
+        newEducation[key] = e.target.value;
+        newArray[+e.target.dataset.id] = newEducation;
+        this.setState({educationArray: newArray});
+    }
+
     render() {
         return (
             <div className="education">
                 <h3>Education</h3>
                 {this.state.educationArray.map((education, index) => (
                     <div key={education.id}>
-                        <p>{education.name}</p>
-                        <p>{education.location}</p>
-                        <p>{education.degree}</p>
-                        <p>{education.major}</p>
-                        <p>{education.GPA}</p>
-                        <p>{education.startDate}</p>
-                        <p>{education.endDate}</p>
+                        {
+                            this.state.edit ?
+                            <div>
+                                <input type="text" data-id={index} value={this.state.educationArray[index].name} onChange={this.handleEditChange("name")}></input>
+                                <input type="text" data-id={index} value={this.state.educationArray[index].location} onChange={this.handleEditChange("location")}></input>
+                                <input type="text" data-id={index} value={this.state.educationArray[index].degree} onChange={this.handleEditChange("degree")}></input>
+                                <input type="text" data-id={index} value={this.state.educationArray[index].major} onChange={this.handleEditChange("major")}></input>
+                                <input type="text" data-id={index} value={this.state.educationArray[index].GPA} onChange={this.handleEditChange("GPA")}></input>
+                                <input type="text" data-id={index} value={this.state.educationArray[index].startDate} onChange={this.handleEditChange("startDate")}></input>
+                                <input type="text" data-id={index} value={this.state.educationArray[index].endDate} onChange={this.handleEditChange("endDate")}></input>
+                            </div>:
+                            <div>
+                                <p>{education.name}</p>
+                                <p>{education.location}</p>
+                                <p>{education.degree}</p>
+                                <p>{education.major}</p>
+                                <p>{education.GPA}</p>
+                                <p>{education.startDate}</p>
+                                <p>{education.endDate}</p>
+                            </div>
+                        }
                         <button data-id={index} onClick={this.handleDeleteClicked}>delete</button>
                     </div>
                 ))}
@@ -191,6 +220,11 @@ class Education  extends Component {
                         <input type="text" value={this.state.education.GPA} onChange={this.handleGPAChange}></input>
                     </label>
                     <button className="add" onClick={this.handleAddClicked}>add</button>
+                    <button onClick={this.handleEditClicked}>{
+                        this.state.edit ?
+                        <span>submit</span>:
+                        <span>edit</span>
+                    }</button>
                 </div>
             </div>
         )
