@@ -5,3 +5,15 @@
 .hidden {
     display: none;
 }
+
+@media print and (orientation: landscape) {
+    .print-hide {
+        display: none;
+    }
+}
+
+@media print and (orientation: portrait) {
+    .print-hide {
+        display: none;
+    }
+}

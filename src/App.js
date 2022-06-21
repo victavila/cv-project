@@ -4,6 +4,7 @@ import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Skills from "./components/Skills";
 import Preview from "./components/Preview"
+import Print from "./components/Print";
 import "./styles/style.css"
 
 
@@ -20,6 +21,7 @@ class App extends Component {
     handleClick = () => {
       this.setState({active: !this.state.active})
     }
+    
 
     render() {
         return (
@@ -29,6 +31,7 @@ class App extends Component {
                 <Experience active={this.state.active}/>
                 <Skills active={this.state.active}/>
                 <Preview active={this.state.active} handleClick={this.handleClick}/>
+                <Print active={this.state.active} />
             </main>
         )
     }
