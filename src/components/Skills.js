@@ -53,6 +53,7 @@ class Skills extends Component {
     }
 
     render() {
+        const computedClassName = this.props.active ? 'visible' : 'hidden';
         
         return (
             <div className="skills">
@@ -67,17 +68,19 @@ class Skills extends Component {
                             </div>:
                             <li>{skill.text}</li>
                         }
-                        <button data-id={index} onClick={this.handleDeleteClicked}>delete</button>
+                        <button data-id={index} onClick={this.handleDeleteClicked} className={computedClassName}>delete</button>
                     </div>
                 ))}
                 </ul>
-                <input type="text" value={this.state.skill.text} onChange={this.handleChange}></input>
-                <button className="add" onClick={this.handleAddClicked}>add</button>
-                <button onClick={this.handleEditClicked}>{
-                    this.state.edit ?
-                    <span>submit</span>:
-                    <span>edit</span>
-                }</button>
+                <div className={computedClassName}>
+                    <input type="text" value={this.state.skill.text} onChange={this.handleChange}></input>
+                    <button className="add" onClick={this.handleAddClicked}>add</button>
+                    <button onClick={this.handleEditClicked}>{
+                        this.state.edit ?
+                        <span>submit</span>:
+                        <span>edit</span>
+                    }</button>
+                </div>
             </div>
         )
     }

@@ -138,6 +138,8 @@ class Experience extends Component {
     }
 
     render() {
+        const computedClassName = this.props.active ? 'visible' : 'hidden';
+        
         return (
             <div className="experience">
                 <h3>Experience</h3>
@@ -162,10 +164,10 @@ class Experience extends Component {
                                 <p>{experience.description}</p>
                             </div>
                         }
-                        <button data-id={index} onClick={this.handleDeleteClicked}>delete</button>
+                        <button className={computedClassName} data-id={index} onClick={this.handleDeleteClicked}>delete</button>
                     </div>
                 ))}
-                <div>
+                <div class={computedClassName}>
                     <label>
                         Company
                         <input type="text" value={this.state.experience.company} onChange={this.handleCompanyChange}></input>

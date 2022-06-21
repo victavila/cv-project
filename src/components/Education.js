@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import uniqid from "uniqid"
 
-class Education  extends Component {
+class Education  extends Component {    
     constructor() {
         super();
 
@@ -161,6 +161,8 @@ class Education  extends Component {
     }
 
     render() {
+        const computedClassName = this.props.active ? 'visible' : 'hidden';
+        
         return (
             <div className="education">
                 <h3>Education</h3>
@@ -187,10 +189,10 @@ class Education  extends Component {
                                 <p>{education.endDate}</p>
                             </div>
                         }
-                        <button data-id={index} onClick={this.handleDeleteClicked}>delete</button>
+                        <button className={computedClassName} data-id={index} onClick={this.handleDeleteClicked}>delete</button>
                     </div>
                 ))}
-                <div>
+                <div class={computedClassName}>
                     <label>
                         School
                         <input type="text" value={this.state.education.name} onChange={this.handleNameChange}></input>

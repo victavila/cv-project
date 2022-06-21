@@ -76,6 +76,8 @@ class Info extends Component {
     }
 
     render() {
+        const computedClassName = this.props.active ? 'visible' : 'hidden';
+
         return (
             <div className="info">
                 <h2>{this.state.info.firstName} {this.state.info.lastName}</h2>
@@ -88,7 +90,7 @@ class Info extends Component {
                     <h4>Email</h4>
                     <p>{this.state.info.email}</p>
                 </div>
-                <div>
+                <div class={computedClassName}>
                     <label>
                         First Name
                         <input type="text" value={this.state.info.firstName} onChange={this.handleFirstNameChange}></input>
