@@ -137,14 +137,6 @@ class Experience extends Component {
         this.setState({experienceArray: newArray});
     }
 
-    handleEditPositionChange = (e) => {
-        let newArray = [...this.state.experienceArray];
-        let newExperience = {...newArray[+e.target.dataset.id]};
-        newExperience.position = e.target.value;
-        newArray[+e.target.dataset.id] = newExperience;
-        this.setState({experienceArray: newArray});
-    }
-
     render() {
         return (
             <div className="experience">
