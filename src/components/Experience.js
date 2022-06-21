@@ -15,7 +15,8 @@ class Experience extends Component {
                 description: '',
                 id: uniqid(),
             },
-            experienceArray: []
+            experienceArray: [],
+            edit: false
         }
     }
 
@@ -122,18 +123,53 @@ class Experience extends Component {
         this.setState({experienceArray: this.state.experienceArray.filter((_, index) => index !== +e.target.dataset.id)})
     }
 
+    handleEditClicked = () => {
+        this.setState({
+            edit: !this.state.edit,
+        })
+    }
+
+    handleEditChange = (key) => (e) => {
+        let newArray = [...this.state.experienceArray];
+        let newExperience = {...newArray[+e.target.dataset.id]};
+        newExperience[key] = e.target.value;
+        newArray[+e.target.dataset.id] = newExperience;
+        this.setState({experienceArray: newArray});
+    }
+
+    handleEditPositionChange = (e) => {
+        let newArray = [...this.state.experienceArray];
+        let newExperience = {...newArray[+e.target.dataset.id]};
+        newExperience.position = e.target.value;
+        newArray[+e.target.dataset.id] = newExperience;
+        this.setState({experienceArray: newArray});
+    }
+
     render() {
         return (
             <div className="experience">
                 <h3>Experience</h3>
                 {this.state.experienceArray.map((experience, index) => (
                     <div key={experience.id}>
-                        <p>{experience.company}</p>
-                        <p>{experience.position}</p>
-                        <p>{experience.location}</p>
-                        <p>{experience.startDate}</p>
-                        <p>{experience.endDate}</p>
-                        <p>{experience.description}</p>
+                        {
+                            this.state.edit ?
+                            <div>
+                                <input type="text" data-id={index} value={this.state.experienceArray[index].company} onChange={this.handleEditChange("company")}></input>
+                                <input type="text" data-id={index} value={this.state.experienceArray[index].position} onChange={this.handleEditChange("position")}></input>
+                                <input type="text" data-id={index} value={this.state.experienceArray[index].location} onChange={this.handleEditChange("location")}></input>
+                                <input type="text" data-id={index} value={this.state.experienceArray[index].startDate} onChange={this.handleEditChange("startDate")}></input>
+                                <input type="text" data-id={index} value={this.state.experienceArray[index].endDate} onChange={this.handleEditChange("endDate")}></input>
+                                <textarea data-id={index} value={this.state.experienceArray[index].description} onChange={this.handleEditChange("description")}></textarea>
+                            </div>:
+                            <div>
+                                <p>{experience.company}</p>
+                                <p>{experience.position}</p>
+                                <p>{experience.location}</p>
+                                <p>{experience.startDate}</p>
+                                <p>{experience.endDate}</p>
+                                <p>{experience.description}</p>
+                            </div>
+                        }
                         <button data-id={index} onClick={this.handleDeleteClicked}>delete</button>
                     </div>
                 ))}
@@ -163,6 +199,11 @@ class Experience extends Component {
                         <textarea value={this.state.experience.description} onChange={this.handleDescriptionChange}></textarea>
                     </label>
                     <button className="add" onClick={this.handleAddClicked}>add</button>
+                    <button onClick={this.handleEditClicked}>{
+                        this.state.edit ?
+                        <span>submit</span>:
+                        <span>edit</span>
+                    }</button>
                 </div>
             </div>
         )
