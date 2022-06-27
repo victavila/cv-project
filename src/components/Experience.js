@@ -147,57 +147,63 @@ class Experience extends Component {
                     <div key={experience.id}>
                         {
                             this.state.edit ?
-                            <div>
-                                <input type="text" data-id={index} value={this.state.experienceArray[index].company} onChange={this.handleEditChange("company")}></input>
-                                <input type="text" data-id={index} value={this.state.experienceArray[index].position} onChange={this.handleEditChange("position")}></input>
-                                <input type="text" data-id={index} value={this.state.experienceArray[index].location} onChange={this.handleEditChange("location")}></input>
-                                <input type="text" data-id={index} value={this.state.experienceArray[index].startDate} onChange={this.handleEditChange("startDate")}></input>
-                                <input type="text" data-id={index} value={this.state.experienceArray[index].endDate} onChange={this.handleEditChange("endDate")}></input>
-                                <textarea data-id={index} value={this.state.experienceArray[index].description} onChange={this.handleEditChange("description")}></textarea>
+                            <div className="center">
+                                <div className="flex-column">
+                                    <input type="text" data-id={index} value={this.state.experienceArray[index].company} onChange={this.handleEditChange("company")}></input>
+                                    <input type="text" data-id={index} value={this.state.experienceArray[index].position} onChange={this.handleEditChange("position")}></input>
+                                    <input type="text" data-id={index} value={this.state.experienceArray[index].location} onChange={this.handleEditChange("location")}></input>
+                                    <input type="text" data-id={index} value={this.state.experienceArray[index].startDate} onChange={this.handleEditChange("startDate")}></input>
+                                    <input type="text" data-id={index} value={this.state.experienceArray[index].endDate} onChange={this.handleEditChange("endDate")}></input>
+                                    <textarea data-id={index} value={this.state.experienceArray[index].description} onChange={this.handleEditChange("description")}></textarea>
+                                </div>
                             </div>:
-                            <div>
-                                <p>{experience.company}</p>
-                                <p>{experience.position}</p>
-                                <p>{experience.location}</p>
-                                <p>{experience.startDate}</p>
-                                <p>{experience.endDate}</p>
-                                <p>{experience.description}</p>
+                            <div className="experience-grid">
+                                <p className="position">{experience.position}</p>
+                                <p className="range">{experience.startDate} - {experience.endDate}</p>
+                                <p className="company-info">{experience.company}, {experience.location}</p>
+                                <p className="description">{experience.description}</p>
                             </div>
                         }
-                        <button className={computedClassName} data-id={index} onClick={this.handleDeleteClicked}>delete</button>
+                        <div className="center">
+                            <button className={`delete ${computedClassName}`} data-id={index} onClick={this.handleDeleteClicked}>delete</button>
+                        </div>
                     </div>
                 ))}
-                <div class={computedClassName}>
-                    <label>
-                        Company
+                <div className={`center ${computedClassName}`}>
+                    <div className="flex-column">
+                        <label>Company:</label>
                         <input type="text" value={this.state.experience.company} onChange={this.handleCompanyChange}></input>
-                    </label>
-                    <label>
-                        Position
+                    </div>
+                    <div className="flex-column">
+                        <label>Position:</label>
                         <input type="text" value={this.state.experience.position} onChange={this.handlePositionChange}></input>
-                    </label>
-                    <label>
-                        Location
+                    </div>
+                    <div className="flex-column">
+                        <label>Location:</label>
                         <input type="text" value={this.state.experience.location} onChange={this.handleLocationChange}></input>
-                    </label>
-                    <label>
-                        Start Date
+                    </div>
+                    <div className="flex-column">
+                        <label>Start Date:</label>
                         <input type="text" value={this.state.experience.startDate} onChange={this.handleStartChange}></input>
-                    </label>
-                    <label>
-                        End Date
+                    </div>
+                    <div className="flex-column">
+                        <label>End Date:</label>
                         <input type="text" value={this.state.experience.endDate} onChange={this.handleEndChange}></input>
-                    </label>
-                    <label>
-                        Description
+                    </div>
+                    <div className="flex-column">
+                        <label>Description:</label>
                         <textarea value={this.state.experience.description} onChange={this.handleDescriptionChange}></textarea>
-                    </label>
-                    <button className="add" onClick={this.handleAddClicked}>add</button>
-                    <button onClick={this.handleEditClicked}>{
-                        this.state.edit ?
-                        <span>submit</span>:
-                        <span>edit</span>
-                    }</button>
+                    </div>
+                    <div className="button-container">
+                        <button className="add" onClick={this.handleAddClicked}>add</button>
+                        <button className="edit" onClick={this.handleEditClicked}>
+                            {
+                            this.state.edit ?
+                            <span>submit</span>:
+                            <span>edit</span>
+                            }
+                        </button>
+                    </div>
                 </div>
             </div>
         )

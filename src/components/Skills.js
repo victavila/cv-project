@@ -60,26 +60,37 @@ class Skills extends Component {
                 <h3>Skills</h3>
                 <ul>
                 {this.state.skills.map((skill, index) => (
-                    <div key={skill.id} className="flex-container">
+                    <div key={skill.id}>
                         {
                             this.state.edit ?
-                            <div>
-                                <input type="text" data-id={index} value={this.state.skills[index].text} onChange={this.handleEditChange}></input>
+                            <div className="center">
+                                <div className="flex-column">
+                                    <input type="text" data-id={index} value={this.state.skills[index].text} onChange={this.handleEditChange}></input>
+                                    <div className="center">
+                                        <button data-id={index} onClick={this.handleDeleteClicked} className={`delete ${computedClassName}`}>delete</button>
+                                    </div>
+                                </div>
                             </div>:
-                            <li>{skill.text}</li>
+                            <div className="skills-align">
+                                <li>{skill.text}</li>
+                                <button data-id={index} onClick={this.handleDeleteClicked} className={`skill-delete ${computedClassName}`}>delete</button>
+                            </div>
                         }
-                        <button data-id={index} onClick={this.handleDeleteClicked} className={computedClassName}>delete</button>
                     </div>
                 ))}
                 </ul>
-                <div className={computedClassName}>
-                    <input type="text" value={this.state.skill.text} onChange={this.handleChange}></input>
-                    <button className="add" onClick={this.handleAddClicked}>add</button>
-                    <button onClick={this.handleEditClicked}>{
-                        this.state.edit ?
-                        <span>submit</span>:
-                        <span>edit</span>
-                    }</button>
+                <div className={`center ${computedClassName}`}>
+                    <div className="flex-column">
+                        <input type="text" value={this.state.skill.text} onChange={this.handleChange}></input>
+                    </div>
+                    <div className="button-container">
+                        <button className="add" onClick={this.handleAddClicked}>add</button>
+                        <button className="edit" onClick={this.handleEditClicked}>{
+                            this.state.edit ?
+                            <span>submit</span>:
+                            <span>edit</span>
+                        }</button>
+                    </div>
                 </div>
             </div>
         )

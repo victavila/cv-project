@@ -4,7 +4,7 @@ class Preview extends Component {
 
     render() {
         return(
-            <div>
+            <div className="center">
                 <button className="print-hide" onClick={this.props.handleClick}>
                     {
                         this.props.active ?

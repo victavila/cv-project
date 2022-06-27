@@ -80,37 +80,43 @@ class Info extends Component {
 
         return (
             <div className="info">
-                <h2>{this.state.info.firstName} {this.state.info.lastName}</h2>
-                <h3>Personal Information</h3>
-                <div>
-                    <h4>Address</h4>
-                    <p>{this.state.info.address}</p>
-                    <h4>Phone number</h4>
-                    <p>{this.state.info.phone}</p>
-                    <h4>Email</h4>
-                    <p>{this.state.info.email}</p>
+                <h2 className="name">{this.state.info.firstName} {this.state.info.lastName}</h2>
+                <div className="personal-info">
+                    <div>
+                        <h4>Address</h4>
+                        <p>{this.state.info.address}</p>
+                    </div>
+                    <div>
+                        <h4>Phone number</h4>
+                        <p>{this.state.info.phone}</p>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>{this.state.info.email}</p>
+                    </div>
                 </div>
-                <div class={computedClassName}>
-                    <label>
-                        First Name
+                <h3 className="info-header">Personal Information</h3>
+                <div className={`center ${computedClassName}`}>
+                    <div className="flex-column">
+                        <label>First Name:</label>
                         <input type="text" value={this.state.info.firstName} onChange={this.handleFirstNameChange}></input>
-                    </label>
-                    <label>
-                        Last Name
+                    </div>
+                    <div className="flex-column">
+                        <label>Last Name:</label>
                         <input type="text" value={this.state.info.lastName} onChange={this.handleLastNameChange}></input>
-                    </label>
-                    <label>
-                        Address
+                    </div>
+                    <div className="flex-column">
+                        <label>Address:</label>
                         <input type="text" value={this.state.info.address} onChange={this.handleAddressChange}></input>
-                    </label>
-                    <label>
-                        Email
+                    </div>
+                    <div className="flex-column">
+                        <label>Email:</label>
                         <input type="email" value={this.state.info.email} onChange={this.handleEmailChange}></input>
-                    </label>
-                    <label>
-                        Phone number
+                    </div>
+                    <div className="flex-column">
+                        <label>Phone number:</label>
                         <input type="tel" value={this.state.info.phone} onChange={this.handlePhoneChange}></input>
-                    </label>
+                    </div>
                 </div>
             </div>
         )

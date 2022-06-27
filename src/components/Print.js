@@ -9,7 +9,7 @@ class Print extends Component {
 
     render() {
         return(
-            <div>
+            <div className="center">
                 {
                     this.props.active ?
                     <></>:

@@ -170,63 +170,69 @@ class Education  extends Component {
                     <div key={education.id}>
                         {
                             this.state.edit ?
-                            <div>
-                                <input type="text" data-id={index} value={this.state.educationArray[index].name} onChange={this.handleEditChange("name")}></input>
-                                <input type="text" data-id={index} value={this.state.educationArray[index].location} onChange={this.handleEditChange("location")}></input>
-                                <input type="text" data-id={index} value={this.state.educationArray[index].degree} onChange={this.handleEditChange("degree")}></input>
-                                <input type="text" data-id={index} value={this.state.educationArray[index].major} onChange={this.handleEditChange("major")}></input>
-                                <input type="text" data-id={index} value={this.state.educationArray[index].GPA} onChange={this.handleEditChange("GPA")}></input>
-                                <input type="text" data-id={index} value={this.state.educationArray[index].startDate} onChange={this.handleEditChange("startDate")}></input>
-                                <input type="text" data-id={index} value={this.state.educationArray[index].endDate} onChange={this.handleEditChange("endDate")}></input>
+                            <div className="center">
+                                <div className="flex-column">
+                                    <input type="text" data-id={index} value={this.state.educationArray[index].name} onChange={this.handleEditChange("name")}></input>
+                                    <input type="text" data-id={index} value={this.state.educationArray[index].location} onChange={this.handleEditChange("location")}></input>
+                                    <input type="text" data-id={index} value={this.state.educationArray[index].degree} onChange={this.handleEditChange("degree")}></input>
+                                    <input type="text" data-id={index} value={this.state.educationArray[index].major} onChange={this.handleEditChange("major")}></input>
+                                    <input type="text" data-id={index} value={this.state.educationArray[index].GPA} onChange={this.handleEditChange("GPA")}></input>
+                                    <input type="text" data-id={index} value={this.state.educationArray[index].startDate} onChange={this.handleEditChange("startDate")}></input>
+                                    <input type="text" data-id={index} value={this.state.educationArray[index].endDate} onChange={this.handleEditChange("endDate")}></input>
+                                </div>
                             </div>:
-                            <div>
-                                <p>{education.name}</p>
-                                <p>{education.location}</p>
-                                <p>{education.degree}</p>
-                                <p>{education.major}</p>
-                                <p>{education.GPA}</p>
-                                <p>{education.startDate}</p>
-                                <p>{education.endDate}</p>
+                            <div className="education-grid">
+                                <p className="school-info"><span className="school-name">{education.name}, </span> {education.location}</p>
+                                <p className="education-time">{education.startDate} - {education.endDate}</p>
+                                <p className="degree">{education.degree}</p>
+                                <p className="gpa"> GPA: {education.GPA}</p>
+                                <p className="major">{education.major}</p>
                             </div>
                         }
-                        <button className={computedClassName} data-id={index} onClick={this.handleDeleteClicked}>delete</button>
+                        <div className="center">
+                            <button className={`delete ${computedClassName}`} data-id={index} onClick={this.handleDeleteClicked}>delete</button>
+                        </div>
                     </div>
                 ))}
-                <div class={computedClassName}>
-                    <label>
-                        School
+                <div className={`center ${computedClassName}`}>
+                    <div className="flex-column">
+                        <label>School:</label>
                         <input type="text" value={this.state.education.name} onChange={this.handleNameChange}></input>
-                    </label>
-                    <label>
-                        Location
+                    </div>
+                    <div className="flex-column">
+                        <label>Location:</label>
                         <input type="text" value={this.state.education.location} onChange={this.handleLocationChange}></input>
-                    </label>
-                    <label>
-                        Degree
+                    </div>
+                    <div className="flex-column">
+                        <label>Degree:</label>
                         <input type="text" value={this.state.education.degree} onChange={this.handleDegreeChange}></input>
-                    </label>
-                    <label>
-                        Major
+                    </div>
+                    <div className="flex-column">
+                        <label>Major:</label>
                         <input type="text" value={this.state.education.major} onChange={this.handleMajorChange}></input>
-                    </label>
-                    <label>
-                        Start Date
+                    </div>
+                    <div className="flex-column">
+                        <label>Start Date:</label>
                         <input type="text" value={this.state.education.startDate} onChange={this.handleStartChange}></input>
-                    </label>
-                    <label>
-                        End Date
+                    </div>
+                    <div className="flex-column">
+                        <label>End Date</label>
                         <input type="text" value={this.state.education.endDate} onChange={this.handleEndChange}></input>
-                    </label>
-                    <label>
-                        GPA
+                    </div>
+                    <div className="flex-column">
+                        <label>GPA:</label>
                         <input type="text" value={this.state.education.GPA} onChange={this.handleGPAChange}></input>
-                    </label>
-                    <button className="add" onClick={this.handleAddClicked}>add</button>
-                    <button onClick={this.handleEditClicked}>{
-                        this.state.edit ?
-                        <span>submit</span>:
-                        <span>edit</span>
-                    }</button>
+                    </div>
+                    <div className="button-container">
+                        <button className="add" onClick={this.handleAddClicked}>add</button>
+                        <button className="edit" onClick={this.handleEditClicked}>
+                            {
+                            this.state.edit ?
+                            <span>submit</span>:
+                            <span>edit</span>
+                            }
+                        </button>
+                    </div>
                 </div>
             </div>
         )
